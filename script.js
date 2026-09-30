@@ -1,118 +1,35 @@
-/* =========================================
-   DHARANI PATNAIKUNI PORTFOLIO
-   JAVASCRIPT
-========================================= */
 
+// Smooth scrolling for navigation links
 
-/* ================= MOBILE MENU ================= */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-const menuToggle =
-    document.getElementById("menuToggle");
+    link.addEventListener("click", function(event) {
 
-const navMenu =
-    document.getElementById("navMenu");
+        const target = document.querySelector(this.getAttribute("href"));
 
+        if (target) {
+            event.preventDefault();
 
-menuToggle.addEventListener("click", function () {
-
-    const isOpen =
-        navMenu.classList.toggle("open");
-
-
-    menuToggle.setAttribute(
-        "aria-expanded",
-        isOpen
-    );
-
-
-    menuToggle.setAttribute(
-        "aria-label",
-        isOpen
-            ? "Close navigation"
-            : "Open navigation"
-    );
-
-});
-
-
-/* ================= CLOSE MENU ================= */
-
-const navigationLinks =
-    document.querySelectorAll(
-        "#navMenu a"
-    );
-
-
-navigationLinks.forEach(function (link) {
-
-    link.addEventListener(
-        "click",
-        function () {
-
-            navMenu.classList.remove("open");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            menuToggle.setAttribute(
-                "aria-label",
-                "Open navigation"
-            );
-
-        }
-    );
-
-});
-
-
-/* ================= CURRENT YEAR ================= */
-
-const yearElement =
-    document.getElementById("year");
-
-
-yearElement.textContent =
-    new Date().getFullYear();
-
-
-/* ================= SCROLL REVEAL ================= */
-
-const revealElements =
-    document.querySelectorAll(
-        ".skill-card, .project-card, .highlight, .timeline-card, .cert-card"
-    );
-
-
-const observer =
-    new IntersectionObserver(
-
-        function (entries) {
-
-            entries.forEach(function (entry) {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add(
-                        "show"
-                    );
-
-                }
-
+            target.scrollIntoView({
+                behavior: "smooth"
             });
-
-        },
-
-        {
-            threshold: 0.12
         }
 
-    );
+    });
+
+});
 
 
-revealElements.forEach(function (element) {
+// Small scroll effect for navbar
 
-    observer.observe(element);
+window.addEventListener("scroll", function() {
+
+    const navbar = document.querySelector(".navbar");
+
+    if (window.scrollY > 50) {
+        navbar.style.background = "rgba(4, 12, 23, 0.95)";
+    } else {
+        navbar.style.background = "rgba(5, 13, 25, 0.82)";
+    }
 
 });
